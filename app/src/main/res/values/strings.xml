@@ -55,5 +55,6 @@
     <string name="time_total">Total Time:</string>
     <string name="button_add_training">Add training</string>
     <string name="text_manageActivity">Manage Activity</string>
+    <string name="text_hintNameEquipment">Insert name equipment</string>
 
 </resources>
