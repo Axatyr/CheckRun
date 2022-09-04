@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CheckRun</string>
+    <string name="chart">Grafico</string>
+    <string name="edit">Modifica</string>
+    <string name="icon_run">Icona corsa</string>
+    <string name="title_distance">Distanza:</string>
+    <string name="title_time">Tempo:</string>
+    <string name="place_title">Nome attivita</string>
+    <string name="place_date">Data</string>
+    <string name="bottom_bar">Barra di navigazione</string>
+    <string name="title_training">Allenamenti</string>
+    <string name="title_addTraining">Aggiungi allenamento</string>
+    <string name="title_profile">Profilo</string>
+    <string name="title_settings">Impostazioni</string>
+    <string name="text_hintName">Nome Attività</string>
+    <string name="text_hintDescription">Inserire una descrizione</string>
+    <string name="text_hintActivity">Seleziona tipo attività</string>
+    <string name="text_hintEquipment">Selezionare attrezzatura</string>
+    <string name="button_import">Aggiungere allenamento</string>
+    <string name="title_name_training">Nome allenamento</string>
+    <string name="title_distance_with_unit">Distanza: (km)</string>
+    <string name="title_time_whit_unit">Tempo: (min)</string>
+    <string name="average_velocity">Velocità (Media km/h)</string>
+    <string name="max_velocity">Velocità massima: (km/h)</string>
+    <string name="title_equipment">Attrezzatura</string>
+    <string name="text_equipment">Nome attrezzatura</string>
+    <string name="text_hintNameUser">Nome:</string>
+    <string name="text_hintAge">Eta:</string>
+    <string name="text_hintWeight">Peso:</string>
+    <string name="text_hintHeight">Altezza:</string>
+    <string name="text_hintFavouriteActivity">Attività preferita</string>
+    <string name="text_hint_bio">Biografia</string>
+    <string name="button_save">Salva</string>
+    <string name="button_add_equipment">Aggiungi attrezzatura</string>
+    <string name="max_distance">Distanza massima</string>
+    <string name="welcome">Benvenuto</string>
+    <string name="last_training">Ultimo allenamento</string>
+    <string name="activity_trend">Trend</string>
+    <string name="distance_total">Distanza totale:</string>
+    <string name="time_total">Tempo totale:</string>
+    <string name="button_add_training">Aggiungi allenamento</string>
+    <string name="text_manageActivity">Gestione Attività</string>
+</resources>

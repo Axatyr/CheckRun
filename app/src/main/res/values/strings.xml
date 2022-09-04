@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">CheckRun</string>
+    <string name="chart">Chart</string>
+    <string name="edit">Edit</string>
+    <string name="icon_run">Icon run</string>
+    <string name="title_distance">Distance:</string>
+    <string name="title_time">Time:</string>
+    <string name="place_title">PlaceTitle</string>
+    <string name="distance_number" translatable="false">15</string>
+    <string name="distance_unit" translatable="false">Km</string>
+    <string name="time_number" translatable="false">3</string>
+    <string name="time_unit" translatable="false">min</string>
+    <string name="place_date">Date</string>
+    <string name="bottom_bar">BottomBar</string>
+    <string name="title_home" translatable="false">Home</string>
+    <string name="title_training">Training</string>
+    <string name="title_addTraining">Add training</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_settings">Settings</string>
+    <string name="text_hintName">Name activity</string>
+    <string name="text_hintDescription">Insert description</string>
+    <string name="text_hintActivity">Select activity type</string>
+    <string name="text_hintEquipment">Select equipment</string>
+    <string name="button_import">Add training</string>
+    <string name="title_name_training">Name Training</string>
+    <string name="title_distance_with_unit">Distance: (km)</string>
+    <string name="title_time_whit_unit">Time: (min)</string>
+    <string name="average_velocity">Velocity: (Average km/h)</string>
+    <string name="max_velocity">Max velocity: (km/h)</string>
+    <string name="velocity_number" translatable="false">300</string>
+    <string name="title_equipment">Equipment</string>
+    <string name="text_equipment">Shoes name</string>
+    <string name="text_hintNameUser">Name:</string>
+    <string name="text_hintAge">Age:</string>
+    <string name="text_hintWeight">Weight:</string>
+    <string name="text_hintHeight">Height:</string>
+    <string name="text_hintFavouriteActivity">Favourite Activity:</string>
+    <string name="text_hint_bio">Bio</string>
+    <string name="suffix_weight" translatable="false">Kg</string>
+    <string name="suffix_height" translatable="false">cm</string>
+    <!-- Utilities -->
+    <string name="button_save">Save</string>
+    <!-- Info -->
+    <string name="title_info" translatable="false">Info</string>
+    <string name="exam_info" translatable="false">Progetto per Sistemi Mobile</string>
+    <string name="description_info" translatable="false">Developed by Alessandro Palladino</string>
+    <string name="contact_info" translatable="false">Contact: alessandro.palladino23@gmail.com</string>
+    <string name="button_add_equipment">Add equipment</string>
+    <string name="max_distance">Max distance</string>
+    <!-- Home -->
+    <string name="welcome">Welcome</string>
+    <string name="last_training">Last Training</string>
+    <string name="activity_trend">Activity Trend</string>
+    <string name="distance_total">Total Distance:</string>
+    <string name="time_total">Total Time:</string>
+    <string name="button_add_training">Add training</string>
+    <string name="text_manageActivity">Manage Activity</string>
+
+</resources>
