@@ -41,4 +41,8 @@
     <string name="time_total">Tempo totale:</string>
     <string name="button_add_training">Aggiungi allenamento</string>
     <string name="text_manageActivity">Gestione Attività</string>
+    <string name="text_hintNameEquipment">Inserisci nome attrezzatura</string>
+    <string name="errorFieldRequired">Campo richiesto</string>
+    <string name="errorLongInput">Troppo lungo</string>
+    <string name="choose_file">Scegli un file</string>
 </resources>
