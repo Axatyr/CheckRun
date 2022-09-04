@@ -15,8 +15,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private BottomNavigationView bottomBar;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,24 +23,17 @@ public class ProfileActivity extends AppCompatActivity {
         if(savedInstanceState == null)
             Utilities.insertFragment(this, new ProfileFragment(), ProfileFragment.class.getSimpleName());
 
-        bottomBar = findViewById(R.id.bottomBar);
+        BottomNavigationView bottomBar = findViewById(R.id.bottomBar);
         bottomBar.setSelectedItemId(R.id.navigation_home);
         bottomBar.setOnItemSelectedListener (item -> {
-
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    startActivity(new Intent(ProfileActivity.this, MainActivity.class));
-                    onResume();
-                    break;
-                case R.id.navigation_training:
-                    startActivity(new Intent(ProfileActivity.this, TrainingActivity.class));
-                    onResume();
-                    break;
-                case R.id.navigation_settings:
-                    startActivity(new Intent(ProfileActivity.this, SettingsActivity.class));
-                    onResume();
-                    break;
+            if(item.getItemId() == R.id.navigation_home) {
+                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+            } else if(item.getItemId() == R.id.navigation_training) {
+                startActivity(new Intent(ProfileActivity.this, TrainingActivity.class));
+            } else if(item.getItemId() == R.id.navigation_settings) {
+                startActivity(new Intent(ProfileActivity.this, SettingsActivity.class));
             }
+            onResume();
             return true;
         });
     }
