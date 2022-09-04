@@ -1,6 +1,7 @@
 package com.example.checkrun;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,8 +9,10 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.example.checkrun.Training.TrainingFragment;
+import com.example.checkrun.ViewModel.EquipmentListViewModel;
 import com.example.checkrun.ViewModel.TrainingAddViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -17,7 +20,8 @@ public class TrainingActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomBar;
 
-    private TrainingAddViewModel trainingAddViewModel;
+    TrainingAddViewModel trainingAddViewModel;
+    EquipmentListViewModel equipmentViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,7 @@ public class TrainingActivity extends AppCompatActivity {
         //Recover view model to pass data on detail
         //In teoria non serve perche viene usata solamente per la bitmap pero magari a me puo servire per passare il file della mappa o robe del genere
         trainingAddViewModel = new ViewModelProvider(this).get(TrainingAddViewModel.class);
+        equipmentViewModel = new ViewModelProvider(this).get(EquipmentListViewModel.class);
 
         bottomBar = findViewById(R.id.bottomBar);
         bottomBar.setSelectedItemId(R.id.navigation_home);
@@ -72,5 +77,13 @@ public class TrainingActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+        }
     }
 }

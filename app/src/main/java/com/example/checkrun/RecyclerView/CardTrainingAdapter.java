@@ -20,8 +20,6 @@ public class CardTrainingAdapter extends RecyclerView.Adapter<CardTrainingViewHo
     private Activity activity;
     private OnItemListener listener;
 
-    private List<CardTraining> cardTrainingListNotFiltered = new ArrayList<>();
-
     public CardTrainingAdapter(OnItemListener listener, Activity activity) {
         this.activity = activity;
         this.listener = listener;
@@ -51,7 +49,6 @@ public class CardTrainingAdapter extends RecyclerView.Adapter<CardTrainingViewHo
 
     public void setData(List<CardTraining> list) {
         this.cardTrainingsList = new ArrayList<>(list);
-        this.cardTrainingListNotFiltered = new ArrayList<>(list);
 
         final CardTrainingDiffCallback diffCallback = new CardTrainingDiffCallback(this.cardTrainingsList, list);
         final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);

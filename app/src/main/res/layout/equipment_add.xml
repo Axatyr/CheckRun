@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/grey">
 
-
     <ScrollView
         android:id="@+id/scrollViewEquipmentAdd"
         android:layout_width="match_parent"
@@ -14,11 +13,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputNameEquipment"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -31,14 +29,14 @@
                 app:counterMaxLength="50">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editNameEquipment"
+                    android:id="@+id/inputNameEquipment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputDistanceEquipment"
+
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,7 +48,7 @@
                 app:boxBackgroundMode="outline">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editDistanceEquipment"
+                    android:id="@+id/inputDistanceEquipment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal" />
@@ -65,10 +63,6 @@
                 android:layout_marginTop="100dp"
                 android:layout_marginEnd="100dp"
                 android:text="@string/button_save" />
-
         </LinearLayout>
-
     </ScrollView>
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

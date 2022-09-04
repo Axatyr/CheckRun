@@ -33,6 +33,4 @@
                 android:text="@string/button_add_equipment" />
         </LinearLayout>
     </ScrollView>
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

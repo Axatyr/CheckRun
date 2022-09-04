@@ -1,14 +1,13 @@
 package com.example.checkrun.RecyclerView;
 
-/*
-@Entity(tableName = "training",
-        foreignKeys = {@ForeignKey(entity = SingleEquipment.class,
-                parentColumns = "equipment_id",
-                childColumns = "equipment",
-                onDelete = ForeignKey.CASCADE)})
- */
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "training")
 public class CardTraining {
-    /*
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "training_id")
     private int id;
@@ -22,21 +21,10 @@ public class CardTraining {
     @ColumnInfo(name="Distance")
     private final float distance;
     @ColumnInfo(name="Time")
-    private final String time;
+    private final int time;
     @ColumnInfo(name="Date")
     private final String date;
-    @ColumnInfo(name="Activity")
-    private final String activity;
-    @ColumnInfo(index = true)
-    private final String equipment;
-     */
-
-    private final String name;
-    private final String description;
-    private final String filePath;
-    private final float distance;
-    private final int time;
-    private final String date;
+    @ColumnInfo(name="Equipment")
     private final String equipment;
 
     public CardTraining(String name, String description, String filePath, float distance, int time, String date, String equipment) {
@@ -57,7 +45,6 @@ public class CardTraining {
     public String getDate() {return date;}
     public String getEquipment() {return equipment;}
 
-    /*
     public int getId() {
         return id;
     }
@@ -65,5 +52,4 @@ public class CardTraining {
     public void setId(int id) {
         this.id = id;
     }
-     */
 }

@@ -6,7 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/grey">
 
-
     <ScrollView
         android:id="@+id/scrollViewTraining"
         android:layout_width="match_parent"
@@ -20,7 +19,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/card_training" />
 
@@ -32,11 +31,6 @@
             android:layout_marginStart="100dp"
             android:layout_marginEnd="100dp"
             android:text="@string/button_add_training" />
-
         </LinearLayout>
     </ScrollView>
-
-
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

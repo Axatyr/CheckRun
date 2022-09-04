@@ -56,5 +56,9 @@
     <string name="button_add_training">Add training</string>
     <string name="text_manageActivity">Manage Activity</string>
     <string name="text_hintNameEquipment">Insert name equipment</string>
-
+    <!-- Profile -->
+    <string name="errorFieldRequired">Field required</string>
+    <string name="errorLongInput">Too long</string>
+    <!-- Add training -->
+    <string name="choose_file">Choose a file</string>
 </resources>

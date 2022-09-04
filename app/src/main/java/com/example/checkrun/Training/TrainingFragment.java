@@ -31,10 +31,8 @@ import java.util.List;
 
 public class TrainingFragment extends Fragment implements OnItemListener{
 
-    private static final String LOG_TAG = "Home-Fragment";
-
+    private static final String LOG_TAG = "Training - Fragment";
     private CardTrainingAdapter adapter;
-    private RecyclerView recyclerView;
     private TrainingListViewModel trainingListViewModel;
 
     @Nullable
@@ -74,7 +72,7 @@ public class TrainingFragment extends Fragment implements OnItemListener{
     }
 
     private void setRecycleView(final Activity activity) {
-        recyclerView = activity.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = activity.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         final OnItemListener listener = this;
         adapter = new CardTrainingAdapter(listener, activity);
@@ -90,4 +88,6 @@ public class TrainingFragment extends Fragment implements OnItemListener{
             trainingListViewModel.setTrainingSelected(adapter.getItemSelected(position));
         }
     }
+
+    
 }

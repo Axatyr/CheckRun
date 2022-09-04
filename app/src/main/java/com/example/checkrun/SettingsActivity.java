@@ -7,13 +7,18 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.checkrun.Settings.SettingsFragment;
+import com.example.checkrun.ViewModel.EquipmentAddViewModel;
+import com.example.checkrun.ViewModel.TrainingAddViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SettingsActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomBar;
+
+    private EquipmentAddViewModel equipmentAddViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +27,8 @@ public class SettingsActivity extends AppCompatActivity {
 
         if(savedInstanceState == null)
             Utilities.insertFragment(this, new SettingsFragment(), SettingsFragment.class.getSimpleName());
+
+        equipmentAddViewModel = new ViewModelProvider(this).get(EquipmentAddViewModel.class);
 
         bottomBar = findViewById(R.id.bottomBar);
         bottomBar.setSelectedItemId(R.id.navigation_home);
