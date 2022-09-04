@@ -10,8 +10,8 @@ import com.example.checkrun.R;
 
 public class CardTrainingViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-    TextView dateTextView;
     TextView nameTextView;
+    TextView dateTextView;
     TextView distanceTextView;
     TextView timeTextView;
 
@@ -19,8 +19,8 @@ public class CardTrainingViewHolder extends RecyclerView.ViewHolder implements V
 
     public CardTrainingViewHolder(@NonNull View itemView, OnItemListener listener) {
         super(itemView);
-        dateTextView = itemView.findViewById(R.id.activityDate);
         nameTextView = itemView.findViewById(R.id.activityName);
+        dateTextView = itemView.findViewById(R.id.activityDate);
         distanceTextView = itemView.findViewById(R.id.activityDistance);
         timeTextView = itemView.findViewById(R.id.activityTime);
         itemListener = listener;

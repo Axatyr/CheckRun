@@ -7,13 +7,17 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.checkrun.Training.TrainingFragment;
+import com.example.checkrun.ViewModel.TrainingAddViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class TrainingActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomBar;
+
+    private TrainingAddViewModel trainingAddViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,10 @@ public class TrainingActivity extends AppCompatActivity {
 
         if(savedInstanceState == null)
             Utilities.insertFragment(this, new TrainingFragment(), TrainingFragment.class.getSimpleName());
+
+        //Recover view model to pass data on detail
+        //In teoria non serve perche viene usata solamente per la bitmap pero magari a me puo servire per passare il file della mappa o robe del genere
+        trainingAddViewModel = new ViewModelProvider(this).get(TrainingAddViewModel.class);
 
         bottomBar = findViewById(R.id.bottomBar);
         bottomBar.setSelectedItemId(R.id.navigation_home);

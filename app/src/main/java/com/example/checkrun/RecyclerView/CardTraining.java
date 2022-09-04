@@ -35,19 +35,17 @@ public class CardTraining {
     private final String description;
     private final String filePath;
     private final float distance;
-    private final String time;
+    private final int time;
     private final String date;
-    private final String activity;
     private final String equipment;
 
-    public CardTraining(String name, String description, String filePath, float distance, String time, String date, String activity, String equipment) {
+    public CardTraining(String name, String description, String filePath, float distance, int time, String date, String equipment) {
         this.name = name;
         this.description = description;
         this.filePath = filePath;
         this.distance = distance;
         this.time = time;
         this.date = date;
-        this.activity = activity;
         this.equipment = equipment;
     }
 
@@ -55,9 +53,8 @@ public class CardTraining {
     public String getDescription() {return description;}
     public String getFilePath() {return filePath;}
     public float getDistance() {return distance;}
-    public String getTime() {return time;}
+    public int getTime() {return time;}
     public String getDate() {return date;}
-    public String getActivity() {return activity;}
     public String getEquipment() {return equipment;}
 
     /*

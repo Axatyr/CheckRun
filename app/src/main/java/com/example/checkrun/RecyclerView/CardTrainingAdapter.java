@@ -6,20 +6,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.checkrun.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CardTrainingAdapter extends RecyclerView.Adapter<CardTrainingViewHolder> {
 
-    private List <CardTraining> cardTrainingsList;
+    private List <CardTraining> cardTrainingsList = new ArrayList<>();
     private Activity activity;
     private OnItemListener listener;
 
-    public CardTrainingAdapter(OnItemListener listener, List<CardTraining> cartTrainingsList, Activity activity) {
-        this.cardTrainingsList = cartTrainingsList;
+    private List<CardTraining> cardTrainingListNotFiltered = new ArrayList<>();
+
+    public CardTrainingAdapter(OnItemListener listener, Activity activity) {
         this.activity = activity;
         this.listener = listener;
     }
@@ -35,14 +38,27 @@ public class CardTrainingAdapter extends RecyclerView.Adapter<CardTrainingViewHo
     public void onBindViewHolder(@NonNull CardTrainingViewHolder holder, int position) {
         CardTraining currentCardTraining = cardTrainingsList.get(position);
 
-        holder.dateTextView.setText(currentCardTraining.getDate());
         holder.nameTextView.setText(currentCardTraining.getName());
+        holder.dateTextView.setText(currentCardTraining.getDate());
         holder.distanceTextView.setText(String.valueOf(currentCardTraining.getDistance()));
-        holder.timeTextView.setText(currentCardTraining.getTime());
+        holder.timeTextView.setText(String.valueOf(currentCardTraining.getTime()));
     }
 
     @Override
     public int getItemCount() {
         return cardTrainingsList.size();
+    }
+
+    public void setData(List<CardTraining> list) {
+        this.cardTrainingsList = new ArrayList<>(list);
+        this.cardTrainingListNotFiltered = new ArrayList<>(list);
+
+        final CardTrainingDiffCallback diffCallback = new CardTrainingDiffCallback(this.cardTrainingsList, list);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+        diffResult.dispatchUpdatesTo(this);
+    }
+
+    public CardTraining getItemSelected(int position) {
+        return cardTrainingsList.get(position);
     }
 }
