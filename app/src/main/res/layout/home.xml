@@ -45,7 +45,7 @@
                         android:id="@+id/home_username"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="5dp"
                         android:text="Username"
                         android:textColor="@color/black"
                         android:textSize="16sp"
@@ -56,21 +56,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </com.google.android.material.card.MaterialCardView>
-
-            <TextView
-                android:id="@+id/title_last_training"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/last_training"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <include layout="@layout/card_training"/>
 
             <TextView
                 android:id="@+id/title_activityTrend"

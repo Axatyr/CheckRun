@@ -47,4 +47,6 @@
     <string name="choose_file">Scegli un file</string>
     <string name="upload_gpx">Seleziona un file .gpx</string>
     <string name="elevation">Dislivello Totale (m)</string>
+    <string name="total_distance_week">Totale</string>
+    <string name="activity_name">Corsa</string>
 </resources>

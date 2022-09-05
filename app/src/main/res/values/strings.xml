@@ -63,4 +63,6 @@
     <string name="choose_file">Choose a file</string>
     <string name="upload_gpx">Upload file .gpx</string>
     <string name="elevation">Altitude difference (m)</string>
+    <string name="total_distance_week">Total</string>
+    <string name="activity_name">Run</string>
 </resources>
