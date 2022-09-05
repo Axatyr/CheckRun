@@ -35,12 +35,11 @@
                 android:layout_marginStart="20dp"
                 android:text="@string/place_date" />
 
-            <com.google.android.gms.maps.MapView
+            <org.osmdroid.views.MapView
                 android:id="@+id/mapView"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                android:layout_marginTop="15dp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                android:layout_marginTop="15dp"/>
 
             <TextView
                 android:id="@+id/activityDescriptionTraining"

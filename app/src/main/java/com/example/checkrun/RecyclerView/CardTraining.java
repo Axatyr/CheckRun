@@ -5,6 +5,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+
 @Entity(tableName = "training")
 public class CardTraining {
 
@@ -21,13 +24,13 @@ public class CardTraining {
     @ColumnInfo(name="Distance")
     private final float distance;
     @ColumnInfo(name="Time")
-    private final int time;
+    private long time;
     @ColumnInfo(name="Date")
     private final String date;
     @ColumnInfo(name="Equipment")
     private final String equipment;
 
-    public CardTraining(String name, String description, String filePath, float distance, int time, String date, String equipment) {
+    public CardTraining(String name, String description, String filePath, float distance, long time, String date, String equipment) {
         this.name = name;
         this.description = description;
         this.filePath = filePath;
@@ -41,7 +44,7 @@ public class CardTraining {
     public String getDescription() {return description;}
     public String getFilePath() {return filePath;}
     public float getDistance() {return distance;}
-    public int getTime() {return time;}
+    public long getTime() {return time;}
     public String getDate() {return date;}
     public String getEquipment() {return equipment;}
 

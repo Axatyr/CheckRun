@@ -11,8 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.checkrun.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class CardTrainingAdapter extends RecyclerView.Adapter<CardTrainingViewHolder> {
 
@@ -35,11 +38,19 @@ public class CardTrainingAdapter extends RecyclerView.Adapter<CardTrainingViewHo
     @Override
     public void onBindViewHolder(@NonNull CardTrainingViewHolder holder, int position) {
         CardTraining currentCardTraining = cardTrainingsList.get(position);
+        //Distance
+        DecimalFormat decimalFormat = new DecimalFormat();
+        decimalFormat.setMaximumFractionDigits(2);
+        //Time
+        long HH = TimeUnit.MILLISECONDS.toHours(currentCardTraining.getTime());
+        long MM = TimeUnit.MILLISECONDS.toMinutes(currentCardTraining.getTime()) % 60;
+        long SS = TimeUnit.MILLISECONDS.toSeconds(currentCardTraining.getTime()) % 60;
+        String finalTime = String.format("%02d:%02d:%02d", HH, MM, SS);
 
         holder.nameTextView.setText(currentCardTraining.getName());
         holder.dateTextView.setText(currentCardTraining.getDate());
-        holder.distanceTextView.setText(String.valueOf(currentCardTraining.getDistance()));
-        holder.timeTextView.setText(String.valueOf(currentCardTraining.getTime()));
+        holder.distanceTextView.setText(decimalFormat.format(currentCardTraining.getDistance()));
+        holder.timeTextView.setText(finalTime);
     }
 
     @Override
