@@ -50,7 +50,6 @@ public class TrainingFragment extends Fragment implements OnItemListener{
 
             setRecycleView(activity);
 
-            trainingListViewModel = new ViewModelProvider(activity).get(TrainingListViewModel.class);
             trainingListViewModel.getCardTrainings().observe(activity, new Observer<List<CardTraining>>() {
                 @Override
                 public void onChanged(List<CardTraining> cardTrainings) {
@@ -76,6 +75,13 @@ public class TrainingFragment extends Fragment implements OnItemListener{
         recyclerView.setHasFixedSize(true);
         final OnItemListener listener = this;
         adapter = new CardTrainingAdapter(listener, activity);
+        trainingListViewModel = new ViewModelProvider(getActivity()).get(TrainingListViewModel.class);
+        trainingListViewModel.getCardTrainings().observe(getActivity(), new Observer<List<CardTraining>>() {
+            @Override
+            public void onChanged(List<CardTraining> cardTrainings) {
+                adapter.notifyDataSetChanged();
+            }
+        });
         recyclerView.setAdapter(adapter);
     }
 

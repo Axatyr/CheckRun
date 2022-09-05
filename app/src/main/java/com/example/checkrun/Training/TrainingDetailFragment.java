@@ -1,13 +1,9 @@
 package com.example.checkrun.Training;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.location.Location;
-import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,21 +30,14 @@ import org.osmdroid.bonuspack.routing.OSRMRoadManager;
 import org.osmdroid.bonuspack.routing.Road;
 import org.osmdroid.bonuspack.routing.RoadManager;
 import org.osmdroid.config.Configuration;
-import org.osmdroid.events.MapListener;
-import org.osmdroid.events.ScrollEvent;
-import org.osmdroid.events.ZoomEvent;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Polyline;
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -61,11 +50,11 @@ public class TrainingDetailFragment extends Fragment {
     private TextView distanceTraining;
     private TextView timeTraining;
     private TextView averageVelTraining;
-    private TextView maxVelTraining;
+    private TextView elevationTraining;
     private TextView equipmentTraining;
 
     private String userAgent = "MyOwnUserAgent/1.0";
-    private float distanceTotal = 0;
+    private float elevationTotal = 0;
 
     @Nullable
     @Override
@@ -92,7 +81,7 @@ public class TrainingDetailFragment extends Fragment {
             distanceTraining = view.findViewById(R.id.activityDistanceTraining);
             timeTraining = view.findViewById(R.id.activityTimeTraining);
             averageVelTraining = view.findViewById(R.id.activityVelAverageTraining);
-            maxVelTraining = view.findViewById(R.id.activityVelMaxTraining);
+            elevationTraining = view.findViewById(R.id.activityElevationTraining);
             equipmentTraining = view.findViewById(R.id.activityEquipmentTraining);
 
             TrainingListViewModel trainingListViewModel = new ViewModelProvider((ViewModelStoreOwner) activity).get(TrainingListViewModel.class);
@@ -119,6 +108,13 @@ public class TrainingDetailFragment extends Fragment {
                     waypoints.add(startPoint);
                     for(int i = 0; i < gpxList.size(); i++) {
                         waypoints.add(new GeoPoint(gpxList.get(i).getLocation().getLatitude(), gpxList.get(i).getLocation().getLongitude()));
+                        float elevation = Float.parseFloat(gpxList.get(i).getEle());
+                        if(i != 0) {
+                            float prevElevation = Float.parseFloat(gpxList.get(i-1).getEle());
+                            if(elevation > prevElevation){
+                                elevationTotal += (elevation - prevElevation);
+                            }
+                        }
                     }
                     Road road = roadManager.getRoad(waypoints);
 
@@ -141,12 +137,11 @@ public class TrainingDetailFragment extends Fragment {
                     equipmentTraining.setText(cardTraining.getEquipment());
                     // Extract from db and calculate
                     Duration duration = Duration.ofMillis(cardTraining.getTime());
-                    float convTime = duration.toHours();
-                    float averageVel = cardTraining.getDistance() / convTime;
+                    float convTime = duration.toMinutes();
+                    float averageVel = cardTraining.getDistance() / (convTime/60);
                     //TODO da cambiare e inserire altitudine
-                    float maxVel = averageVel;
                     averageVelTraining.setText(decimalFormat.format(averageVel));
-                    maxVelTraining.setText(decimalFormat.format(maxVel));
+                    elevationTraining.setText(decimalFormat.format(elevationTotal));
                 }
             });
         }

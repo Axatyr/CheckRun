@@ -52,7 +52,6 @@ public class EquipmentFragment extends Fragment implements OnItemListener{
 
             setRecycleView(activity);
 
-            equipmentListViewModel = new ViewModelProvider(activity).get(EquipmentListViewModel.class);
             equipmentListViewModel.getCardEquipments().observe(activity, new Observer<List<CardEquipment>>() {
                 @Override
                 public void onChanged(List<CardEquipment> cardEquipments) {
@@ -77,6 +76,13 @@ public class EquipmentFragment extends Fragment implements OnItemListener{
         recyclerView.setHasFixedSize(true);
         final OnItemListener listener = this;
         adapter = new CardEquipmentAdapter(listener, activity);
+        equipmentListViewModel = new ViewModelProvider(getActivity()).get(EquipmentListViewModel.class);
+        equipmentListViewModel.getCardEquipments().observe(getActivity(), new Observer<List<CardEquipment>>() {
+            @Override
+            public void onChanged(List<CardEquipment> cardEquipments) {
+                adapter.notifyDataSetChanged();
+            }
+        });
         recyclerView.setAdapter(adapter);
     }
 
