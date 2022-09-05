@@ -33,18 +33,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/place_date" />
 
             <org.osmdroid.views.MapView
                 android:id="@+id/mapView"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="20dp"/>
 
             <TextView
                 android:id="@+id/activityDescriptionTraining"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:gravity="center"
                 android:text="Fill with description" />
 
@@ -76,8 +78,8 @@
                         android:textColor="@color/green"
                         android:textStyle="bold" />
 
-
                 </TableRow>
+
 
                 <TableRow
                     android:layout_width="fill_parent"
@@ -85,7 +87,7 @@
 
                     <TextView
                         android:id="@+id/activityDistanceTraining"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="@string/distance_number"
@@ -93,12 +95,18 @@
 
                     <TextView
                         android:id="@+id/activityTimeTraining"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="@string/time_number"
                         android:textColor="@color/black" />
                 </TableRow>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/grey_dark" />
 
                 <TableRow
                     android:layout_width="fill_parent"
@@ -116,7 +124,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="@string/max_velocity"
+                        android:text="@string/elevation"
                         android:textColor="@color/green"
                         android:textStyle="bold" />
 
@@ -136,7 +144,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/activityVelMaxTraining"
+                        android:id="@+id/activityElevationTraining"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -147,9 +155,8 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/grey" />
+                    android:layout_margin="10dp"
+                    android:background="@color/grey_dark" />
 
                 <TableRow>
 
@@ -170,12 +177,7 @@
                         android:textColor="@color/black" />
                 </TableRow>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/grey" />
+
             </TableLayout>
 
         </LinearLayout>

@@ -82,7 +82,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="30dp"
-                android:text="Upload file .gpx"
+                android:text="@string/upload_gpx"
                 android:drawableLeft="@drawable/ic_upload_file_24dp"/>
 
             <TextView
