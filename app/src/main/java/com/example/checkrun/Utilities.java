@@ -9,6 +9,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.checkrun.Home.HomeFragment;
+import com.example.checkrun.Profile.ProfileFragment;
+import com.example.checkrun.Settings.SettingsFragment;
+import com.example.checkrun.Training.TrainingFragment;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -40,7 +43,7 @@ public class Utilities {
         transaction.replace(R.id.fragment_container_view, fragment, tag);
         //add the transaction to the back stack so the user can navigate back except for the HomeFragment
         //TODO Sistemare il back stack per evitare schermata bianca activity
-        if (!(fragment instanceof HomeFragment)) {
+        if (!((fragment instanceof HomeFragment) || (fragment instanceof TrainingFragment) || (fragment instanceof SettingsFragment) || (fragment instanceof ProfileFragment))) {
             transaction.addToBackStack(tag);
         }
         // Commit the transaction
