@@ -13,19 +13,18 @@ import com.example.checkrun.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class CardTrainingAdapter extends RecyclerView.Adapter<CardTrainingViewHolder> {
 
     private List <CardTraining> cardTrainingsList = new ArrayList<>();
-    private Activity activity;
-    private OnItemListener listener;
+    private final OnItemListener listener;
+    private final Activity activity;
 
     public CardTrainingAdapter(OnItemListener listener, Activity activity) {
-        this.activity = activity;
         this.listener = listener;
+        this.activity = activity;
     }
 
     @NonNull

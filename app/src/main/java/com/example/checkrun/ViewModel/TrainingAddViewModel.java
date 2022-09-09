@@ -9,7 +9,7 @@ import com.example.checkrun.Database.CardTrainingRepository;
 import com.example.checkrun.RecyclerView.CardTraining;
 
 public class TrainingAddViewModel extends AndroidViewModel {
-    private CardTrainingRepository repository;
+    private final CardTrainingRepository repository;
 
     public TrainingAddViewModel(@NonNull Application application) {
         super(application);

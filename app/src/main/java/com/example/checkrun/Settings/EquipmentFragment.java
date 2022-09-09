@@ -13,21 +13,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.checkrun.R;
-import com.example.checkrun.RecyclerView.CardEquipment;
 import com.example.checkrun.RecyclerView.CardEquipmentAdapter;
-import com.example.checkrun.RecyclerView.CardTraining;
-import com.example.checkrun.RecyclerView.CardTrainingAdapter;
 import com.example.checkrun.RecyclerView.OnItemListener;
 import com.example.checkrun.Utilities;
 import com.example.checkrun.ViewModel.EquipmentListViewModel;
-import com.example.checkrun.ViewModel.TrainingListViewModel;
 
-import java.util.List;
 
 public class EquipmentFragment extends Fragment implements OnItemListener{
 
@@ -52,20 +46,10 @@ public class EquipmentFragment extends Fragment implements OnItemListener{
 
             setRecycleView(activity);
 
-            equipmentListViewModel.getCardEquipments().observe(activity, new Observer<List<CardEquipment>>() {
-                @Override
-                public void onChanged(List<CardEquipment> cardEquipments) {
-                    adapter.setData(cardEquipments);
-                }
-            });
+            equipmentListViewModel.getCardEquipments().observe(activity, cardEquipments -> adapter.setData(cardEquipments));
 
             Button addEquipment = view.findViewById(R.id.button_add_equipment);
-            addEquipment.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Utilities.insertFragment((AppCompatActivity) activity, new EquipmentAddFragment(), EquipmentAddFragment.class.getSimpleName());
-                }
-            });
+            addEquipment.setOnClickListener(view1 -> Utilities.insertFragment((AppCompatActivity) activity, new EquipmentAddFragment(), EquipmentAddFragment.class.getSimpleName()));
         } else {
             Log.e(LOG_TAG, "Activity is null");
         }
@@ -76,13 +60,8 @@ public class EquipmentFragment extends Fragment implements OnItemListener{
         recyclerView.setHasFixedSize(true);
         final OnItemListener listener = this;
         adapter = new CardEquipmentAdapter(listener, activity);
-        equipmentListViewModel = new ViewModelProvider(getActivity()).get(EquipmentListViewModel.class);
-        equipmentListViewModel.getCardEquipments().observe(getActivity(), new Observer<List<CardEquipment>>() {
-            @Override
-            public void onChanged(List<CardEquipment> cardEquipments) {
-                adapter.notifyDataSetChanged();
-            }
-        });
+        equipmentListViewModel = new ViewModelProvider(requireActivity()).get(EquipmentListViewModel.class);
+        equipmentListViewModel.getCardEquipments().observe(requireActivity(), cardEquipments -> adapter.notifyDataSetChanged());
         recyclerView.setAdapter(adapter);
     }
 

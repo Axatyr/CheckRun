@@ -1,7 +1,6 @@
 package com.example.checkrun;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,7 +8,6 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.example.checkrun.Training.TrainingFragment;
 import com.example.checkrun.ViewModel.EquipmentListViewModel;
@@ -32,7 +30,6 @@ public class TrainingActivity extends AppCompatActivity {
             Utilities.insertFragment(this, new TrainingFragment(), TrainingFragment.class.getSimpleName());
 
         //Recover view model to pass data on detail
-        //In teoria non serve perche viene usata solamente per la bitmap pero magari a me puo servire per passare il file della mappa o robe del genere
         trainingAddViewModel = new ViewModelProvider(this).get(TrainingAddViewModel.class);
         equipmentViewModel = new ViewModelProvider(this).get(EquipmentListViewModel.class);
 

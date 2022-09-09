@@ -9,7 +9,7 @@ import com.example.checkrun.Database.CardEquipmentRepository;
 import com.example.checkrun.RecyclerView.CardEquipment;
 
 public class EquipmentAddViewModel extends AndroidViewModel {
-    private CardEquipmentRepository repository;
+    private final CardEquipmentRepository repository;
 
     public EquipmentAddViewModel(@NonNull Application application) {
         super(application);

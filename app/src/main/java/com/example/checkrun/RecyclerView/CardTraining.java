@@ -5,8 +5,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.sql.Time;
-import java.sql.Timestamp;
 
 @Entity(tableName = "training")
 public class CardTraining {
@@ -24,7 +22,7 @@ public class CardTraining {
     @ColumnInfo(name="Distance")
     private final float distance;
     @ColumnInfo(name="Time")
-    private long time;
+    private final long time;
     @ColumnInfo(name="Date")
     private final String date;
     @ColumnInfo(name="Equipment")

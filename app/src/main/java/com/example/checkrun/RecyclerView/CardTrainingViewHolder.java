@@ -15,7 +15,7 @@ public class CardTrainingViewHolder extends RecyclerView.ViewHolder implements V
     TextView distanceTextView;
     TextView timeTextView;
 
-    private OnItemListener itemListener;
+    private final OnItemListener itemListener;
 
     public CardTrainingViewHolder(@NonNull View itemView, OnItemListener listener) {
         super(itemView);

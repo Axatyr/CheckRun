@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.checkrun.R;
-import com.example.checkrun.Training.TrainingAddFragment;
 import com.example.checkrun.Utilities;
 
 public class SettingsFragment extends Fragment {
@@ -32,20 +31,10 @@ public class SettingsFragment extends Fragment {
             Utilities.setUpToolbar((AppCompatActivity) activity, getString(R.string.title_settings));
 
             Button equipmentButton = view.findViewById(R.id.button_equipment);
-            equipmentButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Utilities.insertFragment((AppCompatActivity) activity, new EquipmentFragment(), EquipmentFragment.class.getSimpleName());
-                }
-            });
+            equipmentButton.setOnClickListener(view1 -> Utilities.insertFragment((AppCompatActivity) activity, new EquipmentFragment(), EquipmentFragment.class.getSimpleName()));
 
             Button infoButton = view.findViewById(R.id.button_info);
-            infoButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Utilities.insertFragment((AppCompatActivity) activity, new InfoFragment(), InfoFragment.class.getSimpleName());
-                }
-            });
+            infoButton.setOnClickListener(view12 -> Utilities.insertFragment((AppCompatActivity) activity, new InfoFragment(), InfoFragment.class.getSimpleName()));
         }
     }
 }

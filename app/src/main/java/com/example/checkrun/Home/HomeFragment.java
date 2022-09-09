@@ -27,8 +27,6 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 
-import org.w3c.dom.Text;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -185,11 +183,9 @@ public class HomeFragment extends Fragment {
     public static class WeekDaysFormatter extends ValueFormatter {
         private final String[] mDays = {" MON ", " TUR ", " WED ", " THU ", " FRI ", " SAT ", " SUN ",};
 
-        private final BarLineChartBase<?> chart;
         private int count;
 
         public WeekDaysFormatter(BarLineChartBase<?> chart) {
-            this.chart = chart;
         }
 
         @Override

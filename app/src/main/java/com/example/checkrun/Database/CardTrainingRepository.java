@@ -28,11 +28,6 @@ public class CardTrainingRepository {
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
     public void addCardTraining(CardTraining cardTraining) {
-        AppDatabase.executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                cardTrainingDAO.addCardTraining(cardTraining);
-            }
-        });
+        AppDatabase.executor.execute(() -> cardTrainingDAO.addCardTraining(cardTraining));
     }
 }
