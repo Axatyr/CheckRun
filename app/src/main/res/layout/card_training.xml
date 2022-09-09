@@ -72,31 +72,29 @@
             android:id="@+id/distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="150dp"
             android:text="@string/title_distance"
-            android:textSize="14sp"
             android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.426"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.023" />
 
         <TextView
             android:id="@+id/activityDistance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="150dp"
-            android:textSize="16sp"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
             android:text="@string/distance_number"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.415"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.837" />
+            app:layout_constraintVertical_bias="0.775" />
 
         <TextView
             android:id="@+id/suffixDistance"
@@ -120,31 +118,29 @@
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="275dp"
             android:text="@string/title_time"
-            android:textSize="14sp"
             android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.748"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.023" />
+            app:layout_constraintVertical_bias="0.046" />
 
         <TextView
             android:id="@+id/activityTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="275dp"
             android:text="@string/time_number"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.742"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.85"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"/>
+            app:layout_constraintVertical_bias="0.775" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
