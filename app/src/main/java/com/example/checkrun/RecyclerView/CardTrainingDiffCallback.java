@@ -36,7 +36,6 @@ public class CardTrainingDiffCallback extends DiffUtil.Callback{
         final CardTraining oldTraining = oldCardTrainingList.get(oldItemPosition);
         final CardTraining newTraining = newCardTrainingList.get(newItemPosition);
 
-        //TODO da controllare se va bene perche nel caso mancano alcuni confronti
         return oldTraining.getName().equals(newTraining.getName()) &&
                 oldTraining.getDate().equals(newTraining.getDate()) &&
                 oldTraining.getDescription().equals(newTraining.getDescription()) &&

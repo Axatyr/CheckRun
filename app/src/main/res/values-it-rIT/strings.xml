@@ -49,4 +49,8 @@
     <string name="elevation">Dislivello Totale (m)</string>
     <string name="total_distance_week">Totale</string>
     <string name="activity_name">Corsa</string>
+    <string name="share_training">Condividi</string>
+    <string name="title_average">Media</string>
+    <string name="title_elevation">Dislivello</string>
+    <string name="description_training">Descrizione</string>
 </resources>

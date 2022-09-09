@@ -1,5 +1,7 @@
 package com.example.checkrun.Training;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -7,6 +9,7 @@ import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,13 +18,11 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.example.checkrun.GpxNode;
 import com.example.checkrun.R;
-import com.example.checkrun.RecyclerView.CardTraining;
 import com.example.checkrun.Utilities;
 import com.example.checkrun.ViewModel.TrainingListViewModel;
 
@@ -53,7 +54,7 @@ public class TrainingDetailFragment extends Fragment {
     private TextView elevationTraining;
     private TextView equipmentTraining;
 
-    private String userAgent = "MyOwnUserAgent/1.0";
+    private final String userAgent = "MyOwnUserAgent/1.0";
     private float elevationTotal = 0;
 
     @Nullable
@@ -62,6 +63,7 @@ public class TrainingDetailFragment extends Fragment {
         return inflater.inflate(R.layout.training_detail, container, false);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -85,63 +87,75 @@ public class TrainingDetailFragment extends Fragment {
             equipmentTraining = view.findViewById(R.id.activityEquipmentTraining);
 
             TrainingListViewModel trainingListViewModel = new ViewModelProvider((ViewModelStoreOwner) activity).get(TrainingListViewModel.class);
-            trainingListViewModel.getTrainingSelected().observe(getViewLifecycleOwner(), new Observer<CardTraining>() {
-                @RequiresApi(api = Build.VERSION_CODES.O)
-                @Override
-                public void onChanged(CardTraining cardTraining) {
-                    nameTraining.setText(cardTraining.getName());
-                    dateTraining.setText(cardTraining.getDate());
-                    //Import and set map
-                    mapTraining.setMultiTouchControls(true);
+            trainingListViewModel.getTrainingSelected().observe(getViewLifecycleOwner(), cardTraining -> {
+                nameTraining.setText(cardTraining.getName());
+                dateTraining.setText(cardTraining.getDate());
+                //Import and set map
+                mapTraining.setMultiTouchControls(true);
 
-                    File gpxFile = new File(cardTraining.getFilePath());
-                    List<GpxNode> gpxList = Utilities.decodeGPX(gpxFile);
+                File gpxFile = new File(cardTraining.getFilePath());
+                List<GpxNode> gpxList = Utilities.decodeGPX(gpxFile);
 
-                    GeoPoint startPoint = new GeoPoint(gpxList.get(0).getLocation().getLatitude(), gpxList.get(0).getLocation().getLongitude());
-                    IMapController mapController = mapTraining.getController();
-                    mapController.setZoom(16);
-                    mapController.setCenter(startPoint);
+                GeoPoint startPoint = new GeoPoint(gpxList.get(0).getLocation().getLatitude(), gpxList.get(0).getLocation().getLongitude());
+                IMapController mapController = mapTraining.getController();
+                mapController.setZoom(16);
+                mapController.setCenter(startPoint);
 
-                    RoadManager roadManager = new OSRMRoadManager(activity, userAgent);
-                    ((OSRMRoadManager)roadManager).setMean(OSRMRoadManager.MEAN_BY_FOOT);
-                    ArrayList<GeoPoint> waypoints = new ArrayList<GeoPoint>();
-                    waypoints.add(startPoint);
-                    for(int i = 0; i < gpxList.size(); i++) {
-                        waypoints.add(new GeoPoint(gpxList.get(i).getLocation().getLatitude(), gpxList.get(i).getLocation().getLongitude()));
-                        float elevation = Float.parseFloat(gpxList.get(i).getEle());
-                        if(i != 0) {
-                            float prevElevation = Float.parseFloat(gpxList.get(i-1).getEle());
-                            if(elevation > prevElevation){
-                                elevationTotal += (elevation - prevElevation);
-                            }
+                RoadManager roadManager = new OSRMRoadManager(activity, userAgent);
+                ((OSRMRoadManager)roadManager).setMean(OSRMRoadManager.MEAN_BY_FOOT);
+                ArrayList<GeoPoint> waypoints = new ArrayList<>();
+                waypoints.add(startPoint);
+                for(int i = 0; i < gpxList.size(); i++) {
+                    waypoints.add(new GeoPoint(gpxList.get(i).getLocation().getLatitude(), gpxList.get(i).getLocation().getLongitude()));
+                    float elevation = Float.parseFloat(gpxList.get(i).getEle());
+                    if(i != 0) {
+                        float prevElevation = Float.parseFloat(gpxList.get(i-1).getEle());
+                        if(elevation > prevElevation){
+                            elevationTotal += (elevation - prevElevation);
                         }
                     }
-                    Road road = roadManager.getRoad(waypoints);
+                }
+                Road road = roadManager.getRoad(waypoints);
 
-                    Polyline roadOverlay = RoadManager.buildRoadOverlay(road, Color.RED, 10.0f);
-                    mapTraining.getOverlays().add(roadOverlay);
-                    mapTraining.invalidate();
-                    //Description
-                    descriptionTraining.setText(cardTraining.getDescription());
-                    //Distance
-                    DecimalFormat decimalFormat = new DecimalFormat();
-                    decimalFormat.setMaximumFractionDigits(2);
-                    distanceTraining.setText(decimalFormat.format(cardTraining.getDistance()));
-                    //Date
-                    long HH = TimeUnit.MILLISECONDS.toHours(cardTraining.getTime());
-                    long MM = TimeUnit.MILLISECONDS.toMinutes(cardTraining.getTime()) % 60;
-                    long SS = TimeUnit.MILLISECONDS.toSeconds(cardTraining.getTime()) % 60;
-                    String finalTime = String.format("%02d:%02d:%02d", HH, MM, SS);
-                    timeTraining.setText(finalTime);
+                Polyline roadOverlay = RoadManager.buildRoadOverlay(road, Color.RED, 10.0f);
+                mapTraining.getOverlays().add(roadOverlay);
+                mapTraining.invalidate();
+                //Description
+                descriptionTraining.setText(cardTraining.getDescription());
+                //Distance
+                DecimalFormat decimalFormat = new DecimalFormat();
+                decimalFormat.setMaximumFractionDigits(2);
+                distanceTraining.setText(decimalFormat.format(cardTraining.getDistance()));
+                //Date
+                long HH = TimeUnit.MILLISECONDS.toHours(cardTraining.getTime());
+                long MM = TimeUnit.MILLISECONDS.toMinutes(cardTraining.getTime()) % 60;
+                long SS = TimeUnit.MILLISECONDS.toSeconds(cardTraining.getTime()) % 60;
+                String finalTime = String.format("%02d:%02d:%02d", HH, MM, SS);
+                timeTraining.setText(finalTime);
 
-                    equipmentTraining.setText(cardTraining.getEquipment());
-                    // Extract from db and calculate
-                    Duration duration = Duration.ofMillis(cardTraining.getTime());
-                    float convTime = duration.toMinutes();
-                    float averageVel = cardTraining.getDistance() / (convTime/60);
-                    //TODO da cambiare e inserire altitudine
-                    averageVelTraining.setText(decimalFormat.format(averageVel));
-                    elevationTraining.setText(decimalFormat.format(elevationTotal));
+                equipmentTraining.setText(cardTraining.getEquipment());
+                // Extract from db and calculate
+                Duration duration = Duration.ofMillis(cardTraining.getTime());
+                float convTime = duration.toMinutes();
+                float averageVel = cardTraining.getDistance() / (convTime/60);
+                averageVelTraining.setText(decimalFormat.format(averageVel));
+                elevationTraining.setText(decimalFormat.format(elevationTotal));
+            });
+
+            Button shareTraining = view.findViewById(R.id.shareTraining);
+            shareTraining.setOnClickListener(view1 -> {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, getText(R.string.title_name_training) + ": " + nameTraining.getText().toString() + "\n" +
+                        getText(R.string.place_date) + ": " + dateTraining.getText().toString() + "\n" +
+                        getText(R.string.title_distance) + distanceTraining.getText().toString() + "\n" +
+                        getText(R.string.title_time) + timeTraining.getText().toString() + "\n" +
+                        getText(R.string.title_average) + ": " + averageVelTraining.getText().toString() + "\n" +
+                        getText(R.string.title_elevation) + ": " + elevationTraining.getText().toString() + "\n" +
+                        getText(R.string.title_equipment) + ": " + equipmentTraining.getText().toString());
+                shareIntent.setType("text/plain");
+                Context context = view1.getContext();
+                if (context != null && shareIntent.resolveActivity(context.getPackageManager()) != null) {
+                    context.startActivity(Intent.createChooser(shareIntent, null));
                 }
             });
         }

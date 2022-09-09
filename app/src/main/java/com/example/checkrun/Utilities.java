@@ -22,13 +22,8 @@ import org.xml.sax.SAXException;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -42,7 +37,6 @@ public class Utilities {
         // Replace whatever is in the fragment_container_view with this fragment
         transaction.replace(R.id.fragment_container_view, fragment, tag);
         //add the transaction to the back stack so the user can navigate back except for the HomeFragment
-        //TODO Sistemare il back stack per evitare schermata bianca activity
         if (!((fragment instanceof HomeFragment) || (fragment instanceof TrainingFragment) || (fragment instanceof SettingsFragment) || (fragment instanceof ProfileFragment))) {
             transaction.addToBackStack(tag);
         }
@@ -62,7 +56,7 @@ public class Utilities {
     }
 
     public static List<GpxNode> decodeGPX(File file){
-        List<GpxNode> list = new ArrayList<GpxNode>();
+        List<GpxNode> list = new ArrayList<>();
 
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         try {
@@ -79,10 +73,10 @@ public class Utilities {
                 NamedNodeMap attributes = node.getAttributes();
 
                 String newLatitude = attributes.getNamedItem("lat").getTextContent();
-                Double newLatitude_double = Double.parseDouble(newLatitude);
+                double newLatitude_double = Double.parseDouble(newLatitude);
 
                 String newLongitude = attributes.getNamedItem("lon").getTextContent();
-                Double newLongitude_double = Double.parseDouble(newLongitude);
+                double newLongitude_double = Double.parseDouble(newLongitude);
 
                 String newLocationName = newLatitude + ":" + newLongitude;
                 Location newLocation = new Location(newLocationName);
@@ -102,13 +96,7 @@ public class Utilities {
 
             fileInputStream.close();
 
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
 
