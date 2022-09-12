@@ -12,11 +12,13 @@ public class CardEquipmentRepository {
 
     private final CardEquipmentDAO cardEquipmentDAO;
     private final LiveData<List<CardEquipment>> cardEquipmentList;
+    private final LiveData<List<String>> equipmentNameList;
 
     public CardEquipmentRepository(Application application){
         AppDatabase db = AppDatabase.getDatabase(application);
         cardEquipmentDAO = db.cardEquipmentDAO();
         cardEquipmentList = cardEquipmentDAO.getCardEquipments();
+        equipmentNameList = cardEquipmentDAO.getEquipmentName();
     }
 
     // Room executes all queries on a separate thread.
@@ -30,4 +32,8 @@ public class CardEquipmentRepository {
     public void addCardEquipment(CardEquipment cardEquipment) {
         AppDatabase.executor.execute(() -> cardEquipmentDAO.addCardEquipment(cardEquipment));
     }
+
+    public LiveData<List<String>> getEquipmentName() { return equipmentNameList; }
+
+    public void sumDistanceEquipment(float newDistance, String name) { AppDatabase.executor.execute(() -> cardEquipmentDAO.sumDistanceEquipment(newDistance, name));}
 }

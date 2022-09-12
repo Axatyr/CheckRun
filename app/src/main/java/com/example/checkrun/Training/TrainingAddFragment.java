@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 
+import com.example.checkrun.Database.AppDatabase;
 import com.example.checkrun.GetFilePathFromDevice;
 import com.example.checkrun.GpxNode;
 import com.example.checkrun.R;
@@ -32,6 +33,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -67,10 +69,12 @@ public class TrainingAddFragment extends Fragment implements OnItemListener{
             descriptionActivityTraining = view.findViewById(R.id.inputDescription);
             equipmentActivityTraining = view.findViewById(R.id.inputEquipment);
 
-            //TODO Aggiungere le scarpe da db in futuro
-            String[] equipmentItems = new String[] {"Nike Pegasus 37", "Salomon SpeedCross 5", "Asics gelPulse 8"};
-            ArrayAdapter<String> adapterEquipment = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, equipmentItems);
-            equipmentActivityTraining.setAdapter(adapterEquipment);
+            // Getting equipment name from db
+            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, new ArrayList<String>());
+            spinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+            equipmentActivityTraining.setAdapter(spinnerAdapter);
+            trainingAddViewModel.getEquipmentName().observe(activity, equipmentsName -> spinnerAdapter.addAll(equipmentsName));
+            spinnerAdapter.notifyDataSetChanged();
 
             Button uploadGpx = view.findViewById(R.id.button_upload_gpx);
             textFilePath = view.findViewById(R.id.file_path);
@@ -82,6 +86,7 @@ public class TrainingAddFragment extends Fragment implements OnItemListener{
                 startActivityForResult(chooseFile, 10);
 
             });
+
 
             Date date = Calendar.getInstance().getTime();
             SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
@@ -101,6 +106,7 @@ public class TrainingAddFragment extends Fragment implements OnItemListener{
                             formattedDate,
                             equipmentActivityTraining.getText().toString()));
 
+                    trainingAddViewModel.sumDistanceEquipment(distanceActivityTraining, equipmentActivityTraining.getText().toString());
                     ((AppCompatActivity) activity).getSupportFragmentManager().popBackStack();
                 }
             });

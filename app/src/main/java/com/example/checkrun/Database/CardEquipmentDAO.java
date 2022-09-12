@@ -22,4 +22,11 @@ public interface CardEquipmentDAO {
     @Transaction
     @Query("SELECT * FROM equipment ORDER BY equipment_id DESC")
     LiveData<List<CardEquipment>> getCardEquipments();
+
+    @Transaction
+    @Query("SELECT Name FROM equipment")
+    LiveData<List<String>> getEquipmentName();
+
+    @Query("UPDATE equipment SET CurrDistance= CurrDistance+:newDistance WHERE Name = :name")
+    void sumDistanceEquipment(float newDistance, String name);
 }
